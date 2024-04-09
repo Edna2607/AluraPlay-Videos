@@ -1,0 +1,175 @@
+/*FLEXBOX --- Propiedades con su Significado ----*/
+
+/*Organizar el codigo con Flexbox: ajuste flexible para los diferentes tamaños de pantalla*/
+
+.cabecera__container{
+  display: flex; /*de esta manera se colocan los elementos uno al lado del otro (todos juntos)*/
+  justify-content: space-between; /*los elementos se alinean con un espaciado entre cada uno de ellos esto con el fin de reducir codigo y organizar elemento por elemento*/
+  align-items: center; /*para que los elementos se centren*/
+  position: fixed; /*Tiene una posicion fija cuando se hace el scroll*/
+  top: 0px;
+}
+.cabecera__buscar__item{
+    display: none;
+  }
+
+  /*Seccion Superior*/
+  .superior__seccion__container{
+    display: flex; 
+    align-items: center; /*Elementos en la mitad del contenedor*/
+    white-space: nowrap; /*propiedad para alineamiento de texto y el nowrap es para que  no se divida  el texto en diferentes renglones*/
+    overflow: scroll; /*se agrega un scroll a la barra horizontal*/
+    gap: 15px; /*le da un espacio a los elementos*/
+  }
+  
+  /*-----Menu lateral primero se organiza para movil entonces esta en la parte inferior------*/
+  .menu__container{
+    position: fixed;
+    bottom: 0%;
+    height: 75px;
+    width: 100%;
+  }
+
+  .menu__lista{
+    display: flex;
+    justify-content: space-around; /*distribuye uniformemente los elementos*/
+    height: 100%;
+  }
+
+  /*hay 4 listas y debemos ocultar 3 de ellas, solo mostrar una sola lista para ello se utiliza una pseudo-clase = nth-child() 
+  nth-child() = Nos ayuda a trabajar con elementos hermanos*/
+  .menu__lista:nth-child(2),
+  .menu__lista:nth-child(3),
+  .menu__lista:nth-child(4){
+    display: none; /*Oculta estas listas*/
+  }
+
+  .menu__itens, li {
+    align-self: center; /*alinea los elementos en el centro*/
+  }
+
+  .menu__itens{
+    display: flex;
+    flex-direction: column; /*El icono y el nombre quedan en forma de columna*/
+    gap: 5px; /*se despega el icono del nombre*/
+  }
+
+  /*-----------------------------------------------*/
+  /*---------SECCION VIDEOS-----------*/
+  .videos__item{
+    height: 303px;
+    width: 250px;
+    flex-grow: 1; /*Esta propiedad lo que hace es crear el espacio entre los elementos de forma proporcional, lo que  desaparece el espacio en el lateral derecho*/
+  }
+
+  /*Para movil*/
+  .videos__container{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left:0px;
+    gap: 10px; /*Espacio entre cada uno de los videos*/
+  }
+
+  /*-----------------------------------------------*/
+
+  /*Flexbox para el pie de pagina*/
+.rodapie__container{
+    display: flex;
+    /*flex-direction: column; Cambiar los elementos de lo vertical a lo horizontal
+    flex-wrap: wrap; Esta propiedad nos ayuda a quebrar la columna en partes, para que se vayan ajustando en ese contenedor
+    hay una propiedad que las envuelve a las 2 anteriores*/
+    flex-flow: column wrap;
+  }
+
+  /*------------- MEDIA QUERIES-----------------*/
+  /*De esta manera desaparece el buscador cuando el tamaño de la pantalla es mas pequeño*/
+@media (min-width:834px) {
+    .cabecera__buscar__item{
+      display: block
+    }
+
+    .menu__container{
+        left: 0;
+        top:80px;
+        width: 74px;
+        height: auto;
+    }
+
+    .menu__lista{
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 15px;
+        gap: 33px;
+    }
+
+    .videos__container{
+      margin-left: 0px;
+    }
+
+    .rodapie__container{
+      justify-content: space-between;
+  }
+ 
+}
+
+/*-------- Pantalla de computador de escritorio -----------*/
+@media (min-width:1340px){
+
+  .menu__container{
+      width: 239px;
+      overflow: scroll; /*scroll para el menu lateral*/
+    }
+
+    .menu__lista:nth-child(2),
+    .menu__lista:nth-child(3),
+    .menu__lista:nth-child(4){
+      display: flex; /*Mostrar estas listas*/
+    }
+
+    .menu__lista{
+      height: auto;
+      padding: 20px 17px 20px 15px;
+      gap: 15px;
+    }
+
+    .menu__lista:nth-child(3){
+      flex-direction: column-reverse; /*esta propiedad lo que hace es revertir el orden de los elementos*/
+    }
+
+    .superior__seccion__container {
+      left: 240px;
+    }
+
+    .menu__itens{
+      flex-direction: row; /*coloca los elementos uno al lado  del otro - en linea*/
+      gap: 15px; /*da un espacio entre el icono y el texto*/
+      align-items: center;
+    }
+
+    /*Propiedad: order = le da una posicion especifica a un elemento // La propiedad order es un flex-item y debe aplicarse siempre a cada uno de los elementos que desees ordenar. */
+
+    .videojuegos{
+      order:3;
+    }
+
+    .peliculas{
+      order:2;
+    }
+
+    .premium{
+      order:1;
+    }
+
+    .videos__container{
+      display: flex;
+      flex-wrap: wrap;
+      margin-left:160px;
+      gap: 10px; /*Espacio entre cada uno de los videos*/
+    }
+
+    .rodapie__container{
+      margin-left: 10%;
+      
+    }
+
+}
